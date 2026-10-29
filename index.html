@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پورتفولیو من</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --accent: #38bdf8;
+            --secondary: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* هدر و منو */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #334155;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { color: var(--text); text-decoration: none; font-weight: 400; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .menu-btn { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: var(--text); }
+
+        /* بخش قهرمان (Hero) */
+        #hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .hero-content { z-index: 2; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 15px; }
+        .hero-content h1 span { color: var(--accent); }
+        .hero-content p { font-size: 1.2rem; color: var(--secondary); max-width: 600px; margin: 0 auto 30px; }
+        .btn {
+            display: inline-block; padding: 12px 30px; border-radius: 50px;
+            background: var(--accent); color: #0f172a; font-weight: 700;
+            text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4); }
+        .hero-bg {
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+            z-index: 1; animation: pulse 8s infinite alternate;
+        }
+        @keyframes pulse { from { transform: scale(1); opacity: 0.5; } to { transform: scale(1.2); opacity: 1; } }
+
+        /* بخش‌های عمومی */
+        section { padding: 100px 0; }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 60px; }
+        .section-title span { color: var(--accent); }
+
+        /* درباره من */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-text p { margin-bottom: 20px; color: var(--secondary); }
+        .about-img {
+            width: 100%; height: 350px; border-radius: 20px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem; color: #475569; border: 2px dashed #475569;
+        }
+
+        /* مهارت‌ها */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .skill-card {
+            background: var(--card); padding: 30px; border-radius: 15px;
+            text-align: center; transition: transform 0.3s, border 0.3s;
+            border: 1px solid transparent;
+        }
+        .skill-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .skill-card .icon { font-size: 3rem; margin-bottom: 15px; }
+        .skill-card h3 { margin-bottom: 10px; }
+        .skill-card p { color: var(--secondary); font-size: 0.9rem; }
+
+        /* پروژه‌ها */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .project-card {
+            background: var(--card); border-radius: 15px; overflow: hidden;
+            transition: transform 0.3s; border: 1px solid #334155;
+        }
+        .project-card:hover { transform: scale(1.03); }
+        .project-img { height: 200px; background: linear-gradient(45deg, #1e293b, #0f172a); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #334155; }
+        .project-info { padding: 25px; }
+        .project-info h3 { margin-bottom: 10px; }
+        .project-info p { color: var(--secondary); font-size: 0.9rem; margin-bottom: 15px; }
+        .project-tag { display: inline-block; background: rgba(56, 189, 248, 0.1); color: var(--accent); padding: 3px 12px; border-radius: 20px; font-size: 0.8rem; }
+
+        /* تماس */
+        #contact { text-align: center; }
+        .contact-links { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+        .contact-links a {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: var(--card); color: var(--text); font-size: 1.5rem;
+            text-decoration: none; transition: background 0.3s, transform 0.3s;
+            border: 1px solid #334155;
+        }
+        .contact-links a:hover { background: var(--accent); color: #0f172a; transform: translateY(-5px); }
+
+        /* فوتر */
+        footer { text-align: center; padding: 30px 0; border-top: 1px solid #334155; color: var(--secondary); font-size: 0.9rem; }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg); flex-direction: column; padding: 20px; border-bottom: 1px solid #334155; }
+            .nav-links.active { display: flex; }
+            .menu-btn { display: block; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-img { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- هدر -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">پورتفولیو من</div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero">خانه</a></li>
+                    <li><a href="#about">درباره من</a></li>
+                    <li><a href="#skills">مهارت‌ها</a></li>
+                    <li><a href="#projects">پروژه‌ها</a></li>
+                    <li><a href="#contact">تماس</a></li>
+                </ul>
+                <button class="menu-btn" id="menuBtn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- بخش قهرمان -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content container">
+            <h1>سلام، من <span>[اسم شما]</span> هستم</h1>
+            <p>توسعه‌دهنده وب و طراح رابط کاربری. عاشق ساخت تجربه‌های دیجیتال زیبا و کاربردی هستم.</p>
+            <a href="#contact" class="btn">با من در تماس باش</a>
+        </div>
+    </section>
+
+    <!-- درباره من -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">درباره <span>من</span></h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>من یک توسعه‌دهنده وب هستم که به طراحی و توسعه سایت‌های مدرن و واکنش‌گرا علاقه دارم. هدفم ساخت محصولاتی است که هم زیبا باشند و هم تجربه کاربری فوق‌العاده‌ای ارائه دهند.</p>
+                    <p>در طول سال‌ها فعالیت، با تکنولوژی‌های مختلفی مثل HTML، CSS، JavaScript و فریم‌ورک‌های مدرن کار کرده‌ام و همیشه در حال یادگیری چیزهای جدید هستم.</p>
+                </div>
+                <div class="about-img">📸</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مهارت‌ها -->
+    <section id="skills" style="background: #111827;">
+        <div class="container">
+            <h2 class="section-title">مهارت‌های <span>من</span></h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="icon">💻</div>
+                    <h3>توسعه فرانت‌اند</h3>
+                    <p>HTML, CSS, JavaScript, React</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🎨</div>
+                    <h3>طراحی UI/UX</h3>
+                    <p>Figma, طراحی واکنش‌گرا, اصول تجربه کاربری</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">⚙️</div>
+                    <h3>ابزارها</h3>
+                    <p>Git, GitHub, VS Code, Netlify</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- پروژه‌ها -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">پروژه‌های <span>من</span></h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">🛍️</div>
+                    <div class="project-info">
+                        <h3>فروشگاه آنلاین</h3>
+                        <p>یک فروشگاه اینترنتی کامل با سبد خرید و درگاه پرداخت.</p>
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Node.js</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">📝</div>
+                    <div class="project-info">
+                        <h3>اپلیکیشن یادداشت</h3>
+                        <p>اپلیکیشن مدیریت یادداشت با قابلیت جستجو و دسته‌بندی.</p>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">LocalStorage</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">🌐</div>
+                    <div class="project-info">
+                        <h3>سایت شرکتی</h3>
+                        <p>طراحی و پیاده‌سازی سایت معرفی خدمات یک شرکت فناوری.</p>
+                        <span class="project-tag">HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- تماس -->
+    <section id="contact" style="background: #111827;">
+        <div class="container">
+            <h2 class="section-title">با من در <span>تماس</span> باش</h2>
+            <p style="color: var(--secondary);">برای همکاری یا سوالات، از طریق راه‌های زیر با من در ارتباط باشید.</p>
+            <div class="contact-links">
+                <a href="mailto:your-email@example.com" title="ایمیل">✉️</a>
+                <a href="https://github.com/your-username" target="_blank" title="گیت‌هاب">🐙</a>
+                <a href="https://linkedin.com/in/your-username" target="_blank" title="لینکدین">💼</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© ۲۰۲۶ - ساخته شده با ❤️ توسط [اسم شما]</p>
+        </div>
+    </footer>
+
+    <script>
+        // منوی موبایل
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // بستن منو با کلیک روی لینک‌ها
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // اسکرول نرم
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+  </html>
